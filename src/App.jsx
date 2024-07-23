@@ -36,7 +36,7 @@ function GetStartedPage({handleClick}){
   )
 }
 
-function GeneralInfo({stepIndex, fileSet}){
+function GeneralInfo({stepIndex, fileSet, imgFile}){
   let savedCV = JSON.parse(localStorage.getItem("CV-Info"));
 
   const [generalInfo, setGeneralInfo] = useState({
@@ -77,12 +77,11 @@ function GeneralInfo({stepIndex, fileSet}){
     <div className='bigContainer animation'>
       <div className='headerContent'>
         <h2 className='personalDetails'>General Information</h2>
-        <button className='animation experienceBtn' id='stepOneBtn' onClick={handleClick}>Next<img src={rightArrow} alt='skillsCV' className='rightArrow'></img></button>
       </div>
       <form className='generalInfoContainer'>
         <div className='picInputHolder'>
           <label htmlFor="profilePic" className='picLabel generalLabel'>Upload Profile Picture</label>
-          <label className='labelForClick' htmlFor='profilePic'><img src={plus} className='plusSymbol' alt='createCV'></img></label>
+          <label className='labelForClick' style={imgFile === undefined ? {opacity: '.5'} : {opacity: '1'}}htmlFor='profilePic'><img src={imgFile === undefined ? plus : imgFile} style={imgFile === undefined ? {width: '100px', height: '100px'} : {width: '270px', height: '320px', objectFit: 'cover', borderRadius: '5px'}} className='plusSymbol' alt='createCV'></img></label>
           <input value={generalInfo.profilePicture} name='profilePicture' onChange={handleChange} type='file' className='inputPic' id='profilePic'></input>
         </div>  
         <div className='holderForThings'>
@@ -102,6 +101,9 @@ function GeneralInfo({stepIndex, fileSet}){
         <input value={generalInfo.linkedIn} name='linkedIn' onChange={handleInputChange} type='url' className='LinkedInInput websiteInput inputFocus' id='LinkedIn' placeholder='www.yourlinkedin.com'></input>
         </div>
       </form>
+      <div className='skillsBtnContainer'>
+        <button className='animation experienceBtn' id='stepOneBtn' onClick={handleClick}>Next<img src={rightArrow} alt='skillsCV' className='rightArrow'></img></button>
+      </div>
     </div>
   )
 }
@@ -132,10 +134,6 @@ function Skills({handleNext, handlePrevious}){
     <div className='skillsContainer animation'>
       <div className='headerContent'>
         <h2 className='personalDetails'>Skills</h2>
-        <div className='skillsBtnContainer'>
-          <button className='previousButton' onClick={handlePrevious}><img src={leftArrow} alt='skillsCV' className='leftArrow'></img>Previous</button>
-          <button className='experienceBtn' onClick={handleNext}>Next<img src={rightArrow} alt='skillsCV' className='rightArrow'></img></button>
-        </div>
       </div>
       <div className='generalInfoContainer skillsInputContainer'>
         <p className='skillsExample'>In here, highlight your key abilities and competencies relevant to the job. Include technical skills like programming languages (e.g., JavaScript, Python), web development tools (e.g., React, Node.js), and databases (e.g., MySQL). Mention soft skills such as communication, teamwork, and problem-solving. List any certifications (e.g., Certified Scrum Master) and courses (e.g., Google Data Analytics). Add languages you speak and any industry-specific skills pertinent to your field (e.g., digital marketing, financial analysis).</p>
@@ -155,6 +153,10 @@ function Skills({handleNext, handlePrevious}){
           ))}
         </div>
       </div>
+      <div className='skillsBtnContainer'>
+          <button className='previousButton' onClick={handlePrevious}><img src={leftArrow} alt='skillsCV' className='leftArrow'></img>Previous</button>
+          <button className='experienceBtn' onClick={handleNext}>Next<img src={rightArrow} alt='skillsCV' className='rightArrow'></img></button>
+        </div>
     </div>
   )
 }
@@ -218,16 +220,6 @@ function Education({ handleNext, handlePrevious }) {
     <div className='educationContainer animation'>
       <div className='headerContent'>
         <h2 className='personalDetails'>Education & Qualifications</h2>
-        <div className='skillsBtnContainer'>
-          <button className='previousButton' onClick={handlePrevious}>
-            <img src={leftArrow} alt='skillsCV' className='leftArrow' />
-            Previous
-          </button>
-          <button className='experienceBtn' onClick={handleNext}>
-            Next
-            <img src={rightArrow} alt='skillsCV' className='rightArrow' />
-          </button>
-        </div>
       </div>
       <div className='educationInfo'>
         <div className='educationInputContainer'>
@@ -302,6 +294,16 @@ function Education({ handleNext, handlePrevious }) {
           </div>
         </div>
       </div>
+      <div className='skillsBtnContainer'>
+          <button className='previousButton' onClick={handlePrevious}>
+            <img src={leftArrow} alt='skillsCV' className='leftArrow' />
+            Previous
+          </button>
+          <button className='experienceBtn' onClick={handleNext}>
+            Next
+            <img src={rightArrow} alt='skillsCV' className='rightArrow' />
+          </button>
+        </div>
     </div>
   );
 }
@@ -364,16 +366,6 @@ function WorkExperience({ handleNext, handlePrevious }) {
     <div className='educationContainer animation'>
       <div className='headerContent'>
         <h2 className='personalDetails'>Work Experience</h2>
-        <div className='skillsBtnContainer'>
-          <button className='previousButton' onClick={handlePrevious}>
-            <img src={leftArrow} alt='skillsCV' className='leftArrow' />
-            Previous
-          </button>
-          <button className='experienceBtn' onClick={handleNext}>
-            Finish
-            <img src={rightArrow} alt='skillsCV' className='rightArrow' />
-          </button>
-        </div>
       </div>
       <div className='educationInfo'>
         <div className='educationInputContainer'>
@@ -448,6 +440,16 @@ function WorkExperience({ handleNext, handlePrevious }) {
           </div>
         </div>
       </div>
+      <div className='skillsBtnContainer'>
+          <button className='previousButton' onClick={handlePrevious}>
+            <img src={leftArrow} alt='skillsCV' className='leftArrow' />
+            Previous
+          </button>
+          <button className='experienceBtn' onClick={handleNext}>
+            Finish
+            <img src={rightArrow} alt='skillsCV' className='rightArrow' />
+          </button>
+        </div>
     </div>
   );
 }
@@ -467,7 +469,7 @@ function App() {
   if(index === 1){
     return <GetStartedPage handleClick={handleNext} />
   }else if(index === 2){
-    return <GeneralInfo stepIndex={handleNext} fileSet={setFile}/>
+    return <GeneralInfo stepIndex={handleNext} fileSet={setFile} imgFile={file}/>
   } else if(index === 3){
     return <Skills handleNext={handleNext} handlePrevious={handlePrevious}/>
   } else if(index === 4){

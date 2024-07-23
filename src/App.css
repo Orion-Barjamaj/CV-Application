@@ -186,11 +186,11 @@ a:link, a:visited, a:hover, a:active, a {
 }
 
 .headerContent{
-  margin-top: -70px;
+  margin-top: -50px;
   width: 1000px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .personalDetails{
@@ -304,7 +304,10 @@ a:link, a:visited, a:hover, a:active, a {
 
 .skillsBtnContainer{
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
+  margin-top: 30px;
 }
 
 .skillInput{
@@ -555,6 +558,7 @@ a:link, a:visited, a:hover, a:active, a {
   }
 
   .headerContent{
+    margin-top: 0px;
     width: 700px;
   }
 
@@ -609,12 +613,6 @@ a:link, a:visited, a:hover, a:active, a {
     flex-direction: column;
   }
 
-  .skillsBtnContainer{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
   .skillsContainer {
     width: auto;
     margin-bottom: 30px;
@@ -651,7 +649,14 @@ a:link, a:visited, a:hover, a:active, a {
   }
 
   .experienceBtn{
-    width: 200px;
+    width: 150px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  .previousButton{
+    width: 150px;
+    font-size: 20px;
     height: 60px;
   }
 
