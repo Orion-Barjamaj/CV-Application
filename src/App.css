@@ -632,6 +632,7 @@ a:link, a:visited, a:hover, a:active, a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 25px;
   }
 
   .lineSkills{
@@ -656,5 +657,14 @@ a:link, a:visited, a:hover, a:active, a {
 
   .skills{
     width: 150px;
+  }
+
+  .allSkills{
+    width: 305px;
+    min-height: 60px;
+  }
+
+  .startDateInput, .endDateInput{
+    min-width: 306px;
   }
 }
